@@ -1,0 +1,67 @@
+{
+  "name": "techdencias-react-sample",
+  "version": "0.0.1",
+  "description": "ReactJS sample with Github API.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/techdencias/techdencias-react-sample.git"
+  },
+  "engines": {
+    "node": ">=5 <6",
+    "npm": ">=3.3 <4"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "boilerplate",
+    "hot",
+    "reload",
+    "hmr",
+    "live",
+    "edit",
+    "webpack"
+  ],
+  "author": "Oriol Puig <oriol.puig90@gmail.com> (http://github.com/oriolpuig)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/techdencias/techdencias-react-sample/issues"
+  },
+  "homepage": "https://github.com/techdencias/techdencias-react-sample",
+  "devDependencies": {
+    "babel-core": "^6.1.19",
+    "babel-eslint": "^4.1.5",
+    "babel-loader": "^6.1.0",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "babel-preset-stage-1": "^6.1.18",
+    "clean-webpack-plugin": "^0.1.4",
+    "css-loader": "^0.22.0",
+    "eslint": "^1.9.0",
+    "eslint-config-airbnb": "^1.0.0",
+    "eslint-loader": "^1.1.1",
+    "eslint-plugin-react": "^3.8.0",
+    "extract-text-webpack-plugin": "^0.9.1",
+    "file-loader": "^0.8.5",
+    "gh-pages": "^0.5.0",
+    "html-webpack-plugin": "^1.6.2",
+    "react-hot-loader": "^1.3.0",
+    "style-loader": "^0.13.0",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.12.4",
+    "webpack-dev-server": "^1.12.1",
+    "webpack-merge": "^0.2.0"
+  },
+  "dependencies": {
+    "jquery": "^2.2.0",
+    "react": "^0.14.2",
+    "react-dom": "^0.14.2",
+    "react-notification-system": "^0.2.6"
+  },
+  "scripts": {
+    "stats": "webpack --profile --json > stats.json",
+    "build": "webpack",
+    "start": "webpack-dev-server",
+    "lint": "eslint src && jscs src",
+    "deploy-gh-pages": "node ./tools/deploy-gh-pages.js"
+  }
+}
