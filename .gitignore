@@ -4,6 +4,6 @@ npm-debug.log
 dist
 stats.json
 .idea
-build
+# build
 typings
 tsd.json
