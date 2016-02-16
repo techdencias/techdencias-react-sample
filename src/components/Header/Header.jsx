@@ -7,7 +7,6 @@ import HelloWorld from '../HelloWorld/HelloWorld.jsx';
 class Header extends Component {
    constructor(props) {
      super(props);
-     debugger;
    }
 
    render() {

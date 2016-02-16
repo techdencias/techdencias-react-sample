@@ -46,7 +46,6 @@ class App extends Component {
     }
 
     render() {
-      debugger;
       let cards = '';
       const haveItems = this.state.logins.length > 0;
 

@@ -50,7 +50,7 @@ if (TARGET === 'start' || !TARGET) {
       ],
     },
     plugins: [
-      new HtmlwebpackPlugin({ title: 'Ginder - Techdencias' }),
+      new HtmlwebpackPlugin({ title: 'Ginder - Techdencias', template: path.resolve(ROOT_PATH, 'index.ejs'), inject: 'body' }),
       new webpack.HotModuleReplacementPlugin(),
     ],
   });
@@ -77,6 +77,7 @@ if ( TARGET === 'build' || TARGET === 'stats' || (/^deploy.*$/.test(TARGET)) ) {
     },
     plugins: [
       new Clean(['build']), // clean build previous builds
+      new HtmlwebpackPlugin({ title: 'Ginder - Techdencias', template: path.resolve(ROOT_PATH, 'index.ejs'), inject: 'body' }),
       new ExtractTextPlugin('styles.[chunkhash].css'), // separate styles of app.js
       new webpack.optimize.CommonsChunkPlugin( 'vendor', '[name].[chunkhash].js' ), // separate vendor and app
       new webpack.DefinePlugin({ 'process.env': { 'NODE_ENV': JSON.stringify('production') } }), // more minification
