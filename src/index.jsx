@@ -13,4 +13,4 @@ import App from './components/App';
 //   ReactDom.render(<App />, app);
 // })(window);
 
-ReactDom.render(<App />, document.getElementById('root'));
+ReactDom.render(<App />, document.body);

@@ -55,12 +55,14 @@
     "jquery": "^2.2.0",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
-    "react-notification-system": "^0.2.6"
+    "react-notification-system": "^0.2.6",
+    "express":"4.13.4"
   },
   "scripts": {
     "stats": "webpack --profile --json > stats.json",
     "build": "webpack",
-    "start": "webpack-dev-server",
+    "startDev": "webpack-dev-server",
+    "start": "npm run build && node server",
     "lint": "eslint src && jscs src",
     "deploy-gh-pages": "node ./tools/deploy-gh-pages.js"
   }
