@@ -61,8 +61,7 @@
   "scripts": {
     "stats": "webpack --profile --json > stats.json",
     "build": "webpack",
-    "startDev": "webpack-dev-server",
-    "start": "npm run build && node server",
+    "start": "webpack-dev-server",
     "lint": "eslint src && jscs src",
     "deploy-gh-pages": "node ./tools/deploy-gh-pages.js"
   }

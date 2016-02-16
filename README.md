@@ -1,7 +1,7 @@
 techdencias-react-sample
 =====================
 
-ReactJS sample with Github API
+ReactJS sample with Github API. [Demo](http://techdencias-react-sample.azurewebsites.net/)
 
 ### Table of Contents
 1. [Installation](#installation)
