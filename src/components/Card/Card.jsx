@@ -7,6 +7,7 @@ class Card extends Component {
 
     constructor(props) {
       super(props);
+      this.removeClick = this.removeClick.bind(this);
       this.state = { data: [] };
     }
 
@@ -19,17 +20,13 @@ class Card extends Component {
       $.get('https://api.github.com/users/' + this.props.login, (data) => {
         component.setState({ data: data });
       });
-      // .fail((error) => {
-        // const err = error;
-        // alert(err.status + ' - ' + err.statusText);
-      // });
     }
 
     getUsername(data) {
       let usernameHtml = '';
       if (data.login !== null) {
         usernameHtml = (<div className="col s3">
-                            <span className="valign-wrapper"><i className="material-icons">assignment_ind</i> {data.login}</span>
+                            <span className="valign-wrapper"><i className="material-icons">assignment_ind</i>&nbsp;{data.login}</span>
                         </div>);
       }
       return (usernameHtml);
@@ -39,7 +36,7 @@ class Card extends Component {
       let jobHtml = '';
       if (data.company !== null) {
         jobHtml = (<div className="col s5">
-                        <span className="valign-wrapper"><i className="material-icons">work</i> {data.company}</span>
+                        <span className="valign-wrapper"><i className="material-icons">work</i>&nbsp;{data.company}</span>
                     </div>);
       }
       return (jobHtml);
@@ -49,10 +46,15 @@ class Card extends Component {
       let locationHtml = '';
       if (data.location !== null) {
         locationHtml = (<div className="col s4">
-                            <span className="valign-wrapper"><i className="material-icons">location_on</i> {data.location}</span>
+                            <span className="valign-wrapper"><i className="material-icons">location_on</i>&nbsp;{data.location}</span>
                         </div>);
       }
       return (locationHtml);
+    }
+
+    removeClick(e) {
+      e.preventDefault();
+      this.props.removeCard(this.props.login);
     }
 
     render() {
@@ -63,13 +65,20 @@ class Card extends Component {
       return (
         <li className="collection-item avatar">
             <img src={this.state.data.avatar_url} alt="profile image" className="circle" />
-            <span className="title">{this.state.data.name}</span><br /><br />
+            <h5 className="title">{this.state.data.name}</h5>
             <div className="row">
                 {username}
                 {job}
                 {location}
             </div>
-            <a href={this.state.data.html_url} className="secondary-content" target="_blank"><i className="material-icons">more_vert</i></a>
+            <div className="secondary-content">
+                <a href="#" onClick={this.removeClick} alt="remove">
+                    <i className="material-icons text-red">close</i>
+                </a>
+                <a href={this.state.data.html_url} target="_blank">
+                    <i className="material-icons text-lighten-green">add</i>
+                </a>
+            </div>
             <div className="row">
                 <div className="col s4">
                     <span>{this.state.data.followers}</span> <label>Followers</label>
@@ -78,7 +87,7 @@ class Card extends Component {
                     <span>{this.state.data.following}</span> <label>Following</label>
                 </div>
                 <div className="col s4">
-                    <span>{this.state.data.public_repos}</span> <label>Rrepositories</label>
+                    <span>{this.state.data.public_repos}</span> <label>Repositories</label>
                 </div>
             </div>
         </li>
@@ -86,7 +95,7 @@ class Card extends Component {
     }
 }
 
-Card.propTypes = { login: React.PropTypes.string };
-Card.defaultProps = { login: '' };
+Card.propTypes = { };
+Card.defaultProps = { };
 
 export default Card;

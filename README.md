@@ -99,4 +99,4 @@ npm run lint
 
 ### 6. Credits
 
-* Thanks to [asdelday](https://github.com/asdelday) to create this good [react boilerplate](https://github.com/asdelday/react-simple-boilerplate)
+* Thanks to [asdelday](https://github.com/asdelday) for creating this amazing [react boilerplate](https://github.com/asdelday/react-simple-boilerplate)

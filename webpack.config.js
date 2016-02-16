@@ -50,7 +50,7 @@ if (TARGET === 'start' || !TARGET) {
       ],
     },
     plugins: [
-      new HtmlwebpackPlugin({ title: 'Github search - Techdencias' }),
+      new HtmlwebpackPlugin({ title: 'Ginder - Techdencias' }),
       new webpack.HotModuleReplacementPlugin(),
     ],
   });
