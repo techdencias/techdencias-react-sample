@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import $ from 'jquery';
 
 import style from './Card.css'; // eslint-disable-line no-unused-vars
@@ -12,17 +12,22 @@ class Card extends Component {
     }
 
     componentWillMount() {
-      this.getDataFromAPI();
+      this._getDataFromAPI();
     }
 
-    getDataFromAPI() {
+    removeClick(e) {
+      e.preventDefault();
+      this.props.removeCard(this.props.login);
+    }
+
+    _getDataFromAPI() {
       const component = this;
       $.get('https://api.github.com/users/' + this.props.login, (data) => {
         component.setState({ data: data });
       });
     }
 
-    getUsername(data) {
+    _getUsername(data) {
       let usernameHtml = '';
       if (data.login !== null) {
         usernameHtml = (<div className="col s3">
@@ -32,7 +37,7 @@ class Card extends Component {
       return (usernameHtml);
     }
 
-    getJob(data) {
+    _getJob(data) {
       let jobHtml = '';
       if (data.company !== null) {
         jobHtml = (<div className="col s5">
@@ -42,7 +47,7 @@ class Card extends Component {
       return (jobHtml);
     }
 
-    getLocation(data) {
+    _getLocation(data) {
       let locationHtml = '';
       if (data.location !== null) {
         locationHtml = (<div className="col s4">
@@ -52,15 +57,10 @@ class Card extends Component {
       return (locationHtml);
     }
 
-    removeClick(e) {
-      e.preventDefault();
-      this.props.removeCard(this.props.login);
-    }
-
     render() {
-      const username = this.getUsername(this.state.data);
-      const job = this.getJob(this.state.data);
-      const location = this.getLocation(this.state.data);
+      const username = this._getUsername(this.state.data);
+      const job = this._getJob(this.state.data);
+      const location = this._getLocation(this.state.data);
 
       return (
         <li className="collection-item avatar">
@@ -81,13 +81,13 @@ class Card extends Component {
             </div>
             <div className="row">
                 <div className="col s4">
-                    <span>{this.state.data.followers}</span> <label>Followers</label>
+                    <span>{this.state.data.followers}</span>&nbsp;<label>Followers</label>
                 </div>
                 <div className="col s4">
-                    <span>{this.state.data.following}</span> <label>Following</label>
+                    <span>{this.state.data.following}</span>&nbsp;<label>Following</label>
                 </div>
                 <div className="col s4">
-                    <span>{this.state.data.public_repos}</span> <label>Repositories</label>
+                    <span>{this.state.data.public_repos}</span>&nbsp;<label>Repositories</label>
                 </div>
             </div>
         </li>
@@ -95,7 +95,14 @@ class Card extends Component {
     }
 }
 
-Card.propTypes = { };
-Card.defaultProps = { };
+Card.defaultProps = {
+  login: '',
+};
+
+Card.propTypes = {
+  login: PropTypes.string,
+  removeCard: PropTypes.func,
+};
+
 
 export default Card;

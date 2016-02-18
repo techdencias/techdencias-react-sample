@@ -1,14 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+
+import style from './HelloWorld.css'; // eslint-disable-line no-unused-vars
 
 class HelloWorld extends Component {
+
    render() {
-      return (
-        <div className="right-align">Hello {this.props.currentLogin}</div>
-      );
+     const { currentLogin } = this.props;
+     return (
+       <div className="right-align">Hello {currentLogin}</div>
+     );
    }
 }
 
-HelloWorld.propTypes = { name: React.PropTypes.string };
-HelloWorld.defaultProps = { name: '' };
+HelloWorld.propTypes = { currentLogin: PropTypes.string };
+HelloWorld.defaultProps = { currentLogin: '' };
 
 export default HelloWorld;

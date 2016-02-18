@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import NotificationSystem from 'react-notification-system';
 
 import style from './App.css'; // eslint-disable-line no-unused-vars
@@ -7,9 +7,12 @@ import Card from '../Card/Card.jsx';
 import Header from '../Header/Header.jsx';
 
 class App extends Component {
+
     constructor(props) {
       super(props);
-      this.state = {logins: props.logins, currentLogin: props.currentLogin };
+      this.addCard = this.addCard.bind(this);
+      this.removeCard = this.removeCard.bind(this);
+      this.state = { logins: props.logins, currentLogin: props.currentLogin };
     }
 
     componentDidMount() {
@@ -26,10 +29,11 @@ class App extends Component {
     }
 
     addCard(loginToAdd) {
+      const { logins } = this.props;
       // Validations
       if (loginToAdd === '') { // Empty field.
         this._addNotification('Empty field', 'error');
-      } else if (this.props.logins.indexOf(loginToAdd) === 0) { // Username exist
+      } else if (logins.indexOf(loginToAdd) === 0) { // Username exist
         this._addNotification('User already exist', 'error');
       } else { // Validation passed.
         this.setState({ logins: this.state.logins.concat(loginToAdd), currentLogin: loginToAdd });
@@ -51,7 +55,7 @@ class App extends Component {
 
       if (haveItems) {
         cards = (<ul className="collection">
-                    {this.state.logins.map((login) => { return (<Card login={login} removeCard={this.removeCard.bind(this)} />); })}
+                    {this.state.logins.map((login) => { return (<Card key={login.key} login={login} removeCard={this.removeCard} />); })}
                 </ul>);
       }
 
@@ -59,7 +63,7 @@ class App extends Component {
         <div>
             <Header currentLogin={this.state.currentLogin} />
             <div className="container">
-                <Form addCard={this.addCard.bind(this)} logins={this.state.logins} />
+                <Form addCard={this.addCard} logins={this.state.logins} />
                 <div className="row">
                     <div className="col s12">
                         {cards}
@@ -72,7 +76,16 @@ class App extends Component {
     }
 }
 
-App.propTypes = { logins: React.PropTypes.array, addCard: React.PropTypes.func, removeCard: React.PropTypes.func, currentLogin: React.PropTypes.string };
-App.defaultProps = { logins: [], currentLogin: 'World' };
+App.defaultProps = {
+  logins: [],
+  currentLogin: 'World',
+};
+
+App.propTypes = {
+  logins: PropTypes.array,
+  addCard: PropTypes.func,
+  removeCard: PropTypes.func,
+  currentLogin: PropTypes.string,
+};
 
 export default App;
