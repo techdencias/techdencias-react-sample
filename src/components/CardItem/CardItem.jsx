@@ -1,12 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import $ from 'jquery';
 
-import style from './Card.css'; // eslint-disable-line no-unused-vars
+import style from './CardItem.css'; // eslint-disable-line no-unused-vars
 
-class Card extends Component {
+class CardItem extends Component {
 
     constructor(props) {
       super(props);
+      debugger;
       this.removeClick = this.removeClick.bind(this);
       this.state = { data: [] };
     }
@@ -58,6 +59,7 @@ class Card extends Component {
     }
 
     render() {
+      debugger;
       const username = this._getUsername(this.state.data);
       const job = this._getJob(this.state.data);
       const location = this._getLocation(this.state.data);
@@ -95,14 +97,14 @@ class Card extends Component {
     }
 }
 
-Card.defaultProps = {
+CardItem.defaultProps = {
   login: '',
 };
 
-Card.propTypes = {
+CardItem.propTypes = {
   login: PropTypes.string,
   removeCard: PropTypes.func,
 };
 
 
-export default Card;
+export default CardItem;

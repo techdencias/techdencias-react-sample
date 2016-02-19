@@ -2,8 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import NotificationSystem from 'react-notification-system';
 
 import style from './App.css'; // eslint-disable-line no-unused-vars
+
 import Form from '../Form/Form.jsx';
-import Card from '../Card/Card.jsx';
+import CardList from '../CardList/CardList.jsx';
 import Header from '../Header/Header.jsx';
 
 class App extends Component {
@@ -54,9 +55,7 @@ class App extends Component {
       const haveItems = this.state.logins.length > 0;
 
       if (haveItems) {
-        cards = (<ul className="collection">
-                    {this.state.logins.map((login) => { return (<Card key={login.key} login={login} removeCard={this.removeCard} />); })}
-                </ul>);
+        cards = (<CardList logins={this.state.logins} removeCard={this.removeCard} />);
       }
 
       return (
