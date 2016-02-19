@@ -7,7 +7,6 @@ class CardItem extends Component {
 
     constructor(props) {
       super(props);
-      debugger;
       this.removeClick = this.removeClick.bind(this);
       this.state = { data: [] };
     }
@@ -59,7 +58,6 @@ class CardItem extends Component {
     }
 
     render() {
-      debugger;
       const username = this._getUsername(this.state.data);
       const job = this._getJob(this.state.data);
       const location = this._getLocation(this.state.data);
